@@ -40,18 +40,6 @@ public class MainActivity extends Activity implements OnClickListener {
         case MotionEvent.ACTION_MOVE:
           break;
         case MotionEvent.ACTION_UP:
-          // if (event.getEventTime()-event.getDownTime() > 1000) {
-          // mTimerView.init();
-          // Toast("Reset!");
-          // }else{
-          // if(!mTimerView.isPlaying()){
-          // mTimerView.start();
-          // Toast("Start!");
-          // }else{
-          // mTimerView.stop();
-          // Toast("Stop!");
-          // }
-          // }
           break;
         }
         return true;
