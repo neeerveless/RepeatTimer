@@ -15,14 +15,15 @@ public class TimerView extends TextView{
     DOWN,
   }
   
+	private static final int DEFAULT_VALUE = 0;
   public Context mContext;
   public TextView mTextView;
   public Counting mCounting;
   public int setTime;
   public int alertTime;
   public boolean repeatFlag = false;
-  public int time = 0;
-  public int mLaptime = 0;
+  public int time = DEFAULT_VALUE; 
+  public int mLaptime = DEFAULT_VALUE ;
   public boolean playing = false;
   public Timer mTimer = null;
   public Handler mHandler = new Handler();
@@ -44,8 +45,8 @@ public class TimerView extends TextView{
   }
 
   public void init(){
-    time = 0;
-    mLaptime = 0;
+    time = DEFAULT_VALUE ;
+    mLaptime = DEFAULT_VALUE ;
     setText(String.format("%1$02d",(mCounting == Counting.UP?0:setTime)));
   }
   
@@ -75,12 +76,19 @@ public class TimerView extends TextView{
       public void run() {
         for (int i = 0; i < count; i++) {
           vibrator.vibrate(vaibrateTime);
-          try {Thread.sleep(vaibrateTime + interval);} catch (InterruptedException e) {}
+          try {
+						Thread.sleep(vaibrateTime + interval);
+					} catch (InterruptedException e) {}
         }
       }
     }.start();
   }
   
+	/**
+	* startTimer()
+	* timer start method
+	* magic number
+	*/
   public void start(){
     vibrator = (Vibrator)mContext.getSystemService(Context.VIBRATOR_SERVICE);
     playing = true;
@@ -116,6 +124,9 @@ public class TimerView extends TextView{
     }, 1000, 1000);
   }
 
+	/**
+	* 何を
+	*/
   public void stop(){
     playing = false;
     if(mTimer != null){
